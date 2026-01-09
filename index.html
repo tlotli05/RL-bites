@@ -161,7 +161,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: var(--white); /* Changed to solid white */
+            background-color: var(--white);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 0.5rem 0;
             transition: var(--transition);
@@ -185,11 +185,11 @@
         .logo-container {
             display: flex;
             align-items: center;
-            height: 65px; /* Increased height for larger logo */
+            height: 65px;
         }
 
         .logo-img {
-            height: 65px; /* Increased logo size */
+            height: 65px;
             width: auto;
             object-fit: contain;
         }
@@ -253,7 +253,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 65px; /* Account for header height */
+            margin-top: 65px;
         }
 
         .hero-bg {
@@ -266,6 +266,8 @@
             background-size: cover;
             background-position: center;
             z-index: -1;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
         }
 
         .hero-bg::after {
@@ -282,8 +284,8 @@
             max-width: 600px;
             color: var(--white);
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.3s forwards;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
         }
 
         .hero h1 {
@@ -359,7 +361,8 @@
         }
 
         .category-card.visible {
-            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .category-card:hover {
@@ -433,8 +436,8 @@
         }
 
         .view-all-btn.visible {
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.6s;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .view-all-btn:hover {
@@ -475,7 +478,8 @@
         }
 
         .stat-item.visible {
-            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-number {
@@ -512,7 +516,8 @@
         }
 
         .info-card.visible {
-            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .info-card:hover {
@@ -636,7 +641,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -662,19 +667,17 @@
             height: 100vh;
             background-color: var(--white);
             z-index: 1001;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             padding: 5rem 2rem 2rem;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 1;
+            visibility: visible;
         }
 
         .mobile-menu.active {
             right: 0;
-            opacity: 1;
-            visibility: visible;
         }
 
         .mobile-menu-overlay {
@@ -702,6 +705,7 @@
             color: var(--charcoal);
             border-bottom: 1px solid var(--gray-200);
             width: 100%;
+            transition: var(--transition);
         }
 
         .mobile-menu a:last-child {
@@ -729,19 +733,8 @@
             font-size: 1.5rem;
             color: var(--charcoal);
             cursor: pointer;
-            display: none;
-        }
-
-        .mobile-menu.active .close-mobile-menu {
-            display: block;
-        }
-
-        .mobile-menu-btn i {
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu-btn.active i {
-            transform: rotate(90deg);
+            padding: 0.5rem;
+            z-index: 1003;
         }
 
         /* ===== RESPONSIVE STYLES ===== */
@@ -839,7 +832,7 @@
             }
 
             .mobile-menu {
-                width: 280px;
+                width: 100%;
                 padding: 4rem 1.5rem 1.5rem;
             }
 
@@ -868,6 +861,18 @@
         .logo-fallback span {
             color: var(--orange);
         }
+
+        /* Fade-in class for immediate animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -888,7 +893,7 @@
                 <a href="menu.html">Menu</a>
                 <a href="gallery.html">Gallery</a>
                 <a href="contacts.html">Contact</a>
-                <a href="https://wa.me/27665544332" class="btn btn-outline" target="_blank">
+                <a href="https://wa.me/27824218780" class="btn btn-outline" target="_blank">
                     <i class="fab fa-whatsapp"></i> Order Now
                 </a>
             </nav>
@@ -906,7 +911,7 @@
             <a href="menu.html">Menu</a>
             <a href="gallery.html">Gallery</a>
             <a href="contacts.html">Contact</a>
-            <a href="https://wa.me/27665544332" class="btn btn-outline" target="_blank">
+            <a href="https://wa.me/27824218780" class="btn btn-outline" target="_blank">
                 <i class="fab fa-whatsapp"></i> Order Now
             </a>
         </div>
@@ -925,7 +930,7 @@
                     <a href="#menu" class="btn btn-secondary">
                         <i class="fas fa-utensils"></i> View Menu
                     </a>
-                    <a href="https://wa.me/27665544332?text=Hi%20R%26L%20Bitez%2C%20I'd%20like%20to%20place%20an%20order" class="btn btn-primary" target="_blank">
+                    <a href="https://wa.me/27824218780?text=Hi%20R%26L%20Bitez%2C%20I'd%20like%20to%20place%20an%20order" class="btn btn-primary" target="_blank">
                         <i class="fab fa-whatsapp"></i> Order Now
                     </a>
                 </div>
@@ -1035,7 +1040,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Visit Us</h2>
-                <p class="text-small">Find us at our location or reach out for catering and events</p>
+                <p class="text-small">Find us at our location or reach out </p>
             </div>
             
             <div class="info-grid">
@@ -1088,7 +1093,7 @@
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/27665544332" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/27824218780" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
@@ -1117,7 +1122,7 @@
                     <h4 class="footer-heading">Contact</h4>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> Marapyane, Mpumalanga</li>
-                        <li><i class="fas fa-phone"></i> +27 82 421 8780</li>
+                        <li><i class="fas fa-phone"></i> 082 421 8780</li>
                         <li><i class="fas fa-envelope"></i> order@rlbitez.co.za</li>
                         <li><i class="fas fa-clock"></i> Mon-Sat: 10am-8pm</li>
                     </ul>
@@ -1131,26 +1136,7 @@
     </footer>
 
     <script>
-        // Logo loading with fallback
-        const logo = document.getElementById('logo');
-        const logoFallback = document.querySelector('.logo-fallback');
-        
-        logo.onload = function() {
-            logo.style.display = 'block';
-            logoFallback.style.display = 'none';
-        };
-        
-        logo.onerror = function() {
-            logo.style.display = 'none';
-            logoFallback.style.display = 'block';
-        };
-        
-        // Check if logo loads properly
-        if (logo.complete) {
-            logo.onload();
-        }
-        
-        // Mobile Menu Functionality
+        // Mobile Menu Functionality - Fixed
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -1159,7 +1145,6 @@
         function openMobileMenu() {
             mobileMenu.classList.add('active');
             mobileMenuOverlay.classList.add('active');
-            mobileMenuBtn.classList.add('active');
             document.body.style.overflow = 'hidden';
             
             // Change icon to X
@@ -1169,7 +1154,6 @@
         function closeMobileMenuFunc() {
             mobileMenu.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
             document.body.style.overflow = 'auto';
             
             // Change icon back to bars
@@ -1202,43 +1186,31 @@
             }
         });
         
-        // Enhanced scroll animations
+        // Smooth scroll animations with Intersection Observer
         const fadeElements = document.querySelectorAll('.fade-in, .category-card, .stat-item, .info-card, .view-all-btn');
         
-        const fadeInOnScroll = () => {
-            fadeElements.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    // Add staggered delays
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                    }, index * 100);
-                }
-            });
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
         
-        // Initial check
-        fadeInOnScroll();
-        
-        // Check on scroll
-        window.addEventListener('scroll', fadeInOnScroll);
-        
-        // Category card click handlers
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Add click animation
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
             });
+        }, observerOptions);
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
         });
         
-        // WhatsApp order function
+        // WhatsApp order function with correct number
         function orderOnWhatsApp() {
-            const phoneNumber = "27665544332";
+            const phoneNumber = "27824218780";
             const message = "Hi R&L Bitez, I'd like to place an order";
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
@@ -1259,13 +1231,12 @@
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    e.preventDefault();
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -1274,8 +1245,35 @@
             });
         });
         
-        // Update copyright year to 2026
-        document.querySelector('.copyright p').innerHTML = '&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga';
+        // Logo loading with fallback
+        const logo = document.getElementById('logo');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        logo.onload = function() {
+            logo.style.display = 'block';
+            logoFallback.style.display = 'none';
+        };
+        
+        logo.onerror = function() {
+            logo.style.display = 'none';
+            logoFallback.style.display = 'block';
+        };
+        
+        // Check if logo loads properly
+        if (logo.complete) {
+            logo.onload();
+        }
+        
+        // Category card click handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
         
         // Image fallbacks for menu cards
         const menuImages = document.querySelectorAll('.category-img');
@@ -1295,12 +1293,15 @@
             };
         });
         
-        // Initial animation on page load
+        // Trigger initial animations on page load
         window.addEventListener('load', function() {
-            // Trigger initial animations
-            setTimeout(() => {
-                fadeInOnScroll();
-            }, 500);
+            // Trigger Intersection Observer immediately
+            fadeElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    element.classList.add('visible');
+                }
+            });
         });
     </script>
 </body>
