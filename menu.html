@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | R&L Bitez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --white: #ffffff;
+            --black: #111111;
+            --charcoal: #2d2d2d;
+            --burgundy: #7a1c3d;
+            --orange: #e85d04;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.375rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 93, 4, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--burgundy);
+            border: 1px solid var(--burgundy);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--burgundy);
+            color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--burgundy);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-scrolled {
+            padding: 0.35rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 65px;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--burgundy);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+        }
+
+        /* ===== MENU HERO ===== */
+        .menu-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 12rem 0 6rem;
+            text-align: center;
+            margin-top: 65px;
+        }
+
+        .menu-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-hero p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ===== MENU CATEGORIES ===== */
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 80px;
+            background-color: var(--white);
+            padding: 1.5rem 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+        }
+
+        .category-btn.fade-in-left {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--burgundy);
+            color: var(--white);
+            border-color: var(--burgundy);
+        }
+
+        /* ===== MENU SECTIONS ===== */
+        .menu-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .menu-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .menu-section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            opacity: 0;
+        }
+
+        .menu-section-header.fade-in-right {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+
+        .menu-section-icon {
+            font-size: 2rem;
+            color: var(--burgundy);
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: var(--transition);
+            border: 1px solid var(--gray-100);
+            position: relative;
+            opacity: 0;
+        }
+
+        .menu-item.fade-in-left {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .menu-item.fade-in-right {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            border-color: var(--gray-200);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .item-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--black);
+            flex: 1;
+        }
+
+        .item-price {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin-left: 1rem;
+        }
+
+        .item-description {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .item-details {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--gray-100);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .badge.popular {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge.hot {
+            background-color: #ffedd5;
+            color: #ea580c;
+        }
+
+        .badge.new {
+            background-color: #dbeafe;
+            color: #2563eb;
+        }
+
+        .item-special {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--orange);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        /* ===== COMBO SPECIALS ===== */
+        .combo-specials {
+            background-color: var(--gray-100);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 4rem 0;
+            opacity: 0;
+        }
+
+        .combo-specials.fade-in-left {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .combo-specials h3 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--burgundy);
+        }
+
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .combo-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--burgundy);
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .combo-card.fade-in-left {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .combo-card.fade-in-right {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+
+        .combo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .combo-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin: 1rem 0;
+        }
+
+        .combo-savings {
+            font-size: 0.875rem;
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        /* ===== ORDER CTA ===== */
+        .order-cta {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #5a1530 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+            opacity: 0;
+        }
+
+        .order-cta.fade-in-right {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+
+        .order-cta h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .order-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        .footer-heading {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-contact i {
+            color: var(--orange);
+            font-size: 0.875rem;
+            margin-top: 0.125rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            padding: 1rem 0;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            border-bottom: 1px solid var(--gray-200);
+            width: 100%;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--burgundy);
+        }
+
+        .mobile-menu .btn-outline {
+            margin-top: 2rem;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .close-mobile-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        /* Logo fallback styling */
+        .logo-fallback {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            display: none;
+        }
+
+        .logo-fallback span {
+            color: var(--orange);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.75rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-hero {
+                padding: 10rem 0 4rem;
+                margin-top: 55px;
+            }
+            
+            .menu-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .menu-categories {
+                top: 70px;
+                padding: 1rem 0;
+            }
+            
+            .menu-items,
+            .combo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .combo-specials {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo-container {
+                height: 55px;
+            }
+
+            .logo-img {
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .menu-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .menu-section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+            
+            .menu-item {
+                padding: 1.5rem;
+            }
+
+            .logo-container {
+                height: 50px;
+            }
+
+            .logo-img {
+                height: 50px;
+            }
+
+            .menu-hero {
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logorl.jpg" alt="R&L Bitez Logo" class="logo-img" id="logo">
+                <div class="logo-fallback">R&L<span>Bitez</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contacts.html">Contact</a>
+                <a href="https://wa.me/27824218780" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Order Now
+                </a>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="close-mobile-menu" id="closeMobileMenu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html">Home</a>
+            <a href="menu.html" class="active">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contacts.html">Contact</a>
+            <a href="https://wa.me/27824218780" class="btn btn-outline" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Menu Hero -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1>CRAFTED FOR KASI</h1>
+            <p>Premium burgers, crispy wings, loaded fries, and unbeatable combos. All crafted fresh to order with locally sourced ingredients.</p>
+            <a href="#combos" class="btn btn-primary">
+                <i class="fas fa-star"></i> View Special Combos
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Categories Navigation -->
+    <div class="menu-categories">
+        <button class="category-btn active" data-target="burgers">
+            <i class="fas fa-hamburger"></i> Burgers & Rolls
+        </button>
+        <button class="category-btn" data-target="wings">
+            <i class="fas fa-drumstick-bite"></i> Wings
+        </button>
+        <button class="category-btn" data-target="sides">
+            <i class="fas fa-french-fries"></i> Sides
+        </button>
+        <button class="category-btn" data-target="combos">
+            <i class="fas fa-box"></i> Combos
+        </button>
+    </div>
+
+    <!-- Menu Content -->
+    <div class="container">
+        <!-- Burgers Section -->
+        <section id="burgers" class="menu-section">
+            <div class="menu-section-header">
+                <div class="menu-section-icon">
+                    <i class="fas fa-hamburger"></i>
+                </div>
+                <div>
+                    <h2>Burgers & Rolls</h2>
+                    <p class="text-small">Premium burgers with fresh toppings on artisan buns</p>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Flying Dutchman Burger -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Flying Dutchman Burger</div>
+                        <div class="item-price">R40</div>
+                    </div>
+                    <p class="item-description">Crispy chicken, creamy coleslaw, lettuce, tomato & R&L sauce.</p>
+                    <div class="item-details">
+                        <span class="badge">Chicken</span>
+                        <span class="badge popular">Popular</span>
+                    </div>
+                </div>
+                
+                <!-- Beef Burger -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Beef Burger</div>
+                        <div class="item-price">R50</div>
+                    </div>
+                    <p class="item-description">Smashed beef patty topped with creamy coleslaw & R&L sauce.</p>
+                    <div class="item-details">
+                        <span class="badge">Beef</span>
+                        <span class="badge">Signature</span>
+                    </div>
+                </div>
+                
+                <!-- Double Beef Burger -->
+                <div class="menu-item">
+                    <div class="item-special">Most Popular</div>
+                    <div class="item-header">
+                        <div class="item-name">Double Beef Burger</div>
+                        <div class="item-price">R60</div>
+                    </div>
+                    <p class="item-description">Double smashed beef patty with creamy coleslaw & R&L sauce.</p>
+                    <div class="item-details">
+                        <span class="badge">Double Patty</span>
+                        <span class="badge hot">Best Seller</span>
+                    </div>
+                </div>
+                
+                <!-- Boerewors Roll -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Boerewors Roll</div>
+                        <div class="item-price">R45</div>
+                    </div>
+                    <p class="item-description">Grilled boerewors sausage on a fresh roll with fried onions.</p>
+                    <div class="item-details">
+                        <span class="badge">Traditional</span>
+                        <span class="badge new">Local Favorite</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wings Section -->
+        <section id="wings" class="menu-section">
+            <div class="menu-section-header">
+                <div class="menu-section-icon">
+                    <i class="fas fa-drumstick-bite"></i>
+                </div>
+                <div>
+                    <h2>Wings</h2>
+                    <p class="text-small">Crispy chicken wings with delicious sauces</p>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Plain Buffalo Wings (4) -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Plain Buffalo Wings (4)</div>
+                        <div class="item-price">R55</div>
+                    </div>
+                    <p class="item-description">Grilled & sauced with our signature buffalo glaze.</p>
+                    <div class="item-details">
+                        <span class="badge hot">Spicy</span>
+                        <span class="badge">Classic</span>
+                    </div>
+                </div>
+                
+                <!-- Dunked Wings (4) -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Dunked Wings (4)</div>
+                        <div class="item-price">R65</div>
+                    </div>
+                    <p class="item-description">Grilled and dipped in our tango dunked sauce.</p>
+                    <div class="item-details">
+                        <span class="badge">Special Sauce</span>
+                        <span class="badge popular">Popular</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sides Section -->
+        <section id="sides" class="menu-section">
+            <div class="menu-section-header">
+                <div class="menu-section-icon">
+                    <i class="fas fa-french-fries"></i>
+                </div>
+                <div>
+                    <h2>Sides</h2>
+                    <p class="text-small">Perfect accompaniments to your meal</p>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Plain Fries -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Plain Fries</div>
+                        <div class="item-price">R35</div>
+                    </div>
+                    <p class="item-description">Crispy golden fries with R&L sauce on the side.</p>
+                    <div class="item-details">
+                        <span class="badge">Classic</span>
+                        <span class="badge">Side</span>
+                    </div>
+                </div>
+                
+                <!-- Loaded Fries -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Loaded Fries</div>
+                        <div class="item-price">R55</div>
+                    </div>
+                    <p class="item-description">Golden fries topped with cheese sauce, minced bacon & jalapeños.</p>
+                    <div class="item-details">
+                        <span class="badge hot">Spicy</span>
+                        <span class="badge">Cheese Sauce</span>
+                    </div>
+                </div>
+                
+                <!-- Potato Curls Small -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Potato Curls (Small)</div>
+                        <div class="item-price">R20</div>
+                    </div>
+                    <p class="item-description">Crispy, curly potato snacks - perfect light snack.</p>
+                    <div class="item-details">
+                        <span class="badge">Snack</span>
+                        <span class="badge">Crunchy</span>
+                    </div>
+                </div>
+                
+                <!-- Potato Curls Medium -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Potato Curls (Medium)</div>
+                        <div class="item-price">R25</div>
+                    </div>
+                    <p class="item-description">Medium portion of our crispy, curly potato snacks.</p>
+                    <div class="item-details">
+                        <span class="badge">Share Size</span>
+                        <span class="badge">Crunchy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combo Specials -->
+        <div class="combo-specials">
+            <h3>Special Combos - Perfect Pairings</h3>
+            <div class="combo-grid">
+                <!-- Combo 1 -->
+                <div class="combo-card">
+                    <h4>Burger + Plain Fries</h4>
+                    <div class="combo-price">R65</div>
+                    <p>Perfect meal combination</p>
+                    <div class="combo-savings">Great Value</div>
+                </div>
+                
+                <!-- Combo 2 -->
+                <div class="combo-card">
+                    <h4>Wings + Plain Fries</h4>
+                    <div class="combo-price">R70</div>
+                    <p>Wings and fries combo</p>
+                    <div class="combo-savings">Crowd Favorite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combos Section -->
+        <section id="combos" class="menu-section">
+            <div class="menu-section-header">
+                <div class="menu-section-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div>
+                    <h2>Combos</h2>
+                    <p class="text-small">Perfect pairings for the ultimate meal experience</p>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Combo 1 -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Burger + Plain Fries Combo</div>
+                        <div class="item-price">R65</div>
+                    </div>
+                    <p class="item-description">Any burger served with a side of plain fries. Great value meal.</p>
+                    <div class="item-details">
+                        <span class="badge">Best Value</span>
+                        <span class="badge popular">Most Popular</span>
+                    </div>
+                </div>
+                
+                <!-- Combo 2 -->
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Wings + Plain Fries Combo</div>
+                        <div class="item-price">R70</div>
+                    </div>
+                    <p class="item-description">4 wings (your choice) served with a side of plain fries.</p>
+                    <div class="item-details">
+                        <span class="badge">Perfect Pairing</span>
+                        <span class="badge hot">Spicy Option</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order CTA -->
+        <section class="order-cta">
+            <h2>Ready to Order?</h2>
+            <p>Place your order via WhatsApp for quick service. We'll prepare your food fresh and have it ready for pickup at Turn City Sports Grounds.</p>
+            <a href="https://wa.me/27824218780?text=Hi%20R%26L%20Bitez%2C%20I'd%20like%20to%20place%20an%20order%20from%20your%20menu" 
+               class="btn whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order on WhatsApp
+            </a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">R&L<span>Bitez</span></div>
+                    <p>Crafted for Kasi. Serving Marapyane with premium street food since 2025. Quality, flavor, and community at the heart of everything we do.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/27824218780" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Menu Categories</h4>
+                    <ul>
+                        <li><a href="menu.html#burgers">Burgers & Rolls</a></li>
+                        <li><a href="menu.html#wings">Wings</a></li>
+                        <li><a href="menu.html#sides">Sides</a></li>
+                        <li><a href="menu.html#combos">Combos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Marapyane, Mpumalanga</li>
+                        <li><i class="fas fa-phone"></i> 082 421 8780</li>
+                        <li><i class="fas fa-envelope"></i> order@rlbitez.co.za</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 10am-8pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo loading with fallback
+        const logo = document.getElementById('logo');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        logo.onload = function() {
+            logo.style.display = 'block';
+            logoFallback.style.display = 'none';
+        };
+        
+        logo.onerror = function() {
+            logo.style.display = 'none';
+            logoFallback.style.display = 'block';
+        };
+        
+        // Check if logo loads properly
+        if (logo.complete) {
+            logo.onload();
+        }
+        
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            mobileMenuBtn.style.display = 'none';
+        }
+        
+        function closeMobileMenuFunc() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            mobileMenuBtn.style.display = 'block';
+        }
+        
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenuFunc);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Menu category navigation
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const menuSections = document.querySelectorAll('.menu-section');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const targetId = btn.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight active category on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '-100px 0px -50% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    categoryBtns.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-target') === id) {
+                            btn.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        menuSections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Fade animations for elements
+        const animatedElements = {
+            '.category-btn': 'fade-in-left',
+            '.menu-section-header': 'fade-in-right',
+            '.menu-item:nth-child(odd)': 'fade-in-left',
+            '.menu-item:nth-child(even)': 'fade-in-right',
+            '.combo-specials': 'fade-in-left',
+            '.combo-card:nth-child(odd)': 'fade-in-left',
+            '.combo-card:nth-child(even)': 'fade-in-right',
+            '.order-cta': 'fade-in-right'
+        };
+        
+        const animateOnScroll = () => {
+            Object.entries(animatedElements).forEach(([selector, animationClass]) => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add(animationClass);
+                    }
+                });
+            });
+        };
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update copyright year and company founding year to 2025
+        document.querySelector('.footer-about p').innerHTML = 'Crafted for Kasi. Serving Marapyane with premium street food since 2025. Quality, flavor, and community at the heart of everything we do.';
+        document.querySelector('.copyright p').innerHTML = '&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga';
+        
+        // Initial animation on page load
+        window.addEventListener('load', function() {
+            animateOnScroll();
+        });
+        
+        // Also animate when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

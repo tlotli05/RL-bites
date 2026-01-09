@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&L Bitez | Crafted for Kasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --white: #ffffff;
+            --black: #111111;
+            --charcoal: #2d2d2d;
+            --burgundy: #7a1c3d;
+            --orange: #e85d04;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.75rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 93, 4, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--burgundy);
+            border: 1px solid var(--burgundy);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--burgundy);
+            color: var(--white);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--white); /* Changed to solid white */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-scrolled {
+            padding: 0.35rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 65px; /* Increased height for larger logo */
+        }
+
+        .logo-img {
+            height: 65px; /* Increased logo size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--burgundy);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 65px; /* Account for header height */
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hero-content {
+            max-width: 600px;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== MENU SECTION ===== */
+        .menu-section {
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--burgundy);
+        }
+
+        .menu-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--burgundy);
+        }
+
+        .category-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--black);
+        }
+
+        .category-card p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .view-menu-btn {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .view-menu-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(232, 93, 4, 0.2);
+        }
+
+        .view-all-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 1rem 3rem;
+            background: var(--burgundy);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .view-all-btn.visible {
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .view-all-btn:hover {
+            background: #5a1530;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(122, 28, 61, 0.15);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background-color: var(--gray-100);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stat-item.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== INFO SECTION ===== */
+        .info-section {
+            background-color: var(--white);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .info-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--burgundy);
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        .footer-heading {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-contact i {
+            color: var(--orange);
+            font-size: 0.875rem;
+            margin-top: 0.125rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            padding: 1rem 0;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            border-bottom: 1px solid var(--gray-200);
+            width: 100%;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--burgundy);
+        }
+
+        .mobile-menu .btn-outline {
+            margin-top: 2rem;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .close-mobile-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            display: none;
+        }
+
+        .mobile-menu.active .close-mobile-menu {
+            display: block;
+        }
+
+        .mobile-menu-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn.active i {
+            transform: rotate(90deg);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.25rem;
+            }
+            
+            h2 {
+                font-size: 2.25rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section {
+                padding: 5rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.125rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .menu-categories {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .category-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .logo-container {
+                height: 55px;
+            }
+
+            .logo-img {
+                height: 55px;
+            }
+
+            .hero {
+                margin-top: 55px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero {
+                min-height: 700px;
+            }
+
+            .mobile-menu {
+                width: 280px;
+                padding: 4rem 1.5rem 1.5rem;
+            }
+
+            .logo-container {
+                height: 50px;
+            }
+
+            .logo-img {
+                height: 50px;
+            }
+
+            .hero {
+                margin-top: 50px;
+            }
+        }
+
+        /* Logo fallback styling */
+        .logo-fallback {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            display: none;
+        }
+
+        .logo-fallback span {
+            color: var(--orange);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logorl.jpg" alt="R&L Bitez Logo" class="logo-img" id="logo">
+                <div class="logo-fallback">R&L<span>Bitez</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contacts.html">Contact</a>
+                <a href="https://wa.me/27665544332" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Order Now
+                </a>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="close-mobile-menu" id="closeMobileMenu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html" class="active">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contacts.html">Contact</a>
+            <a href="https://wa.me/27665544332" class="btn btn-outline" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>R&L Bitez</h1>
+                <div class="hero-tagline">Crafted for Kasi</div>
+                <p class="hero-description">Burgers, wings and loaded fries in Marapyane, Mpumalanga. Quality street food with a premium touch.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-secondary">
+                        <i class="fas fa-utensils"></i> View Menu
+                    </a>
+                    <a href="https://wa.me/27665544332?text=Hi%20R%26L%20Bitez%2C%20I'd%20like%20to%20place%20an%20order" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Our Menu</h2>
+                <p class="text-small">Crafted with passion, served with pride. Fresh ingredients, bold flavors.</p>
+            </div>
+            
+            <div class="menu-categories">
+                <!-- Burgers Card -->
+                <div class="category-card" onclick="window.location.href='menu.html#burgers'">
+                    <img src="images/burgers.jpg" alt="Burgers" class="category-img">
+                    <div class="category-content">
+                        <h3>Burgers</h3>
+                        <p>Classic, double, and special burgers made with premium beef patties, fresh toppings, and our secret sauces.</p>
+                        <button class="view-menu-btn">
+                            View Burgers Menu
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Fries Card -->
+                <div class="category-card" onclick="window.location.href='menu.html#fries'">
+                    <img src="images/fries.jpg" alt="Loaded Fries" class="category-img">
+                    <div class="category-content">
+                        <h3>Loaded Fries</h3>
+                        <p>Crispy golden fries loaded with cheese, mince, and our special sauces. The perfect shareable snack.</p>
+                        <button class="view-menu-btn">
+                            View Fries Menu
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Wings Card -->
+                <div class="category-card" onclick="window.location.href='menu.html#wings'">
+                    <img src="images/wings.jpg" alt="Wings" class="category-img">
+                    <div class="category-content">
+                        <h3>Wings</h3>
+                        <p>Crispy chicken wings tossed in your choice of sauce - BBQ, Peri-Peri, or our special spicy sauce.</p>
+                        <button class="view-menu-btn">
+                            View Wings Menu
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Combos Card -->
+                <div class="category-card" onclick="window.location.href='menu.html#combos'">
+                    <img src="images/combos.jpg" alt="Combos" class="category-img">
+                    <div class="category-content">
+                        <h3>Combos</h3>
+                        <p>Perfect meal deals combining burgers, fries, wings for the ultimate satisfaction and value.</p>
+                        <button class="view-menu-btn">
+                            View Combo Deals
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="view-all-btn" onclick="window.location.href='menu.html'">
+                View Complete Menu
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="fade-in">Our Story</h2>
+                <p class="fade-in">R&L Bitez was born from a simple idea: bring premium quality street food to Marapyane. What started as a small venture has grown into a local favorite, known for our commitment to quality ingredients and authentic flavors.</p>
+                
+                <p class="fade-in">We believe great food should be accessible to everyone. That's why we source locally where possible and prepare every dish with the same care we would for our own family. From our signature burgers to our loaded fries, every item on our menu tells a story of passion and dedication.</p>
+                
+                <p class="fade-in">When you choose R&L Bitez, you're not just getting a meal - you're experiencing what happens when street food meets premium quality, all crafted for the Kasi spirit.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Years Serving</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Local Events</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Fresh Ingredients</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Visit Us</h2>
+                <p class="text-small">Find us at our location or reach out for catering and events</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location</h3>
+                    <p class="text-small">Marapyane, Mpumalanga</p>
+                    <p class="text-xs">ko crossong</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Payment</h3>
+                    <p class="text-small">Cash & Card Accepted</p>
+                    <p class="text-xs">Secure payment options available</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Events</h3>
+                    <p class="text-small">Local Festivals & Sports</p>
+                    <p class="text-xs">Available for community events</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Hours</h3>
+                    <p class="text-small">Mon-Sat: 10am-8pm</p>
+                    <p class="text-xs">Sun: 12pm-6pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">R&L<span>Bitez</span></div>
+                    <p>Crafted for Kasi. Serving Marapyane with premium street food since 2025. Quality, flavor, and community at the heart of everything we do.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/27665544332" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Menu</h4>
+                    <ul>
+                        <li><a href="menu.html#burgers">Burgers</a></li>
+                        <li><a href="menu.html#fries">Loaded Fries</a></li>
+                        <li><a href="menu.html#wings">Wings</a></li>
+                        <li><a href="menu.html#combos">Combos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Marapyane, Mpumalanga</li>
+                        <li><i class="fas fa-phone"></i> +27 82 421 8780</li>
+                        <li><i class="fas fa-envelope"></i> order@rlbitez.co.za</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 10am-8pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | designed by Monarch Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Logo loading with fallback
+        const logo = document.getElementById('logo');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        logo.onload = function() {
+            logo.style.display = 'block';
+            logoFallback.style.display = 'none';
+        };
+        
+        logo.onerror = function() {
+            logo.style.display = 'none';
+            logoFallback.style.display = 'block';
+        };
+        
+        // Check if logo loads properly
+        if (logo.complete) {
+            logo.onload();
+        }
+        
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            mobileMenuBtn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Change icon to X
+            mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        }
+        
+        function closeMobileMenuFunc() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Change icon back to bars
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenuFunc();
+            } else {
+                openMobileMenu();
+            }
+        });
+        
+        closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenuFunc);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Enhanced scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in, .category-card, .stat-item, .info-card, .view-all-btn');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    // Add staggered delays
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        };
+        
+        // Initial check
+        fadeInOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Category card click handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+        
+        // WhatsApp order function
+        function orderOnWhatsApp() {
+            const phoneNumber = "27665544332";
+            const message = "Hi R&L Bitez, I'd like to place an order";
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+        
+        // Add event listener to WhatsApp buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            if (button.innerHTML.includes('whatsapp') || button.innerHTML.includes('Order Now')) {
+                button.addEventListener('click', function(e) {
+                    if (!this.getAttribute('href')) {
+                        e.preventDefault();
+                        orderOnWhatsApp();
+                    }
+                });
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update copyright year to 2026
+        document.querySelector('.copyright p').innerHTML = '&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga';
+        
+        // Image fallbacks for menu cards
+        const menuImages = document.querySelectorAll('.category-img');
+        const imageFallbacks = {
+            'burgers.jpg': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'fries.jpg': 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'wings.jpg': 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'combos.jpg': 'https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        };
+        
+        menuImages.forEach(img => {
+            img.onerror = function() {
+                const src = this.src.split('/').pop();
+                if (imageFallbacks[src]) {
+                    this.src = imageFallbacks[src];
+                }
+            };
+        });
+        
+        // Initial animation on page load
+        window.addEventListener('load', function() {
+            // Trigger initial animations
+            setTimeout(() => {
+                fadeInOnScroll();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

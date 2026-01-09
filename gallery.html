@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | R&L Bitez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --white: #ffffff;
+            --black: #111111;
+            --charcoal: #2d2d2d;
+            --burgundy: #7a1c3d;
+            --orange: #e85d04;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.375rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 93, 4, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--burgundy);
+            border: 1px solid var(--burgundy);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--burgundy);
+            color: var(--white);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--burgundy);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        /* ===== GALLERY HERO ===== */
+        .gallery-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('images/wings.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--white);
+            padding: 12rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(122, 28, 61, 0.2), rgba(232, 93, 4, 0.2));
+            z-index: 1;
+        }
+
+        .gallery-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-hero p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== GALLERY FILTER ===== */
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 80px;
+            background-color: var(--white);
+            padding: 1.5rem 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--burgundy);
+            color: var(--white);
+            border-color: var(--burgundy);
+        }
+
+        /* ===== GALLERY GRID ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--gray-100);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            height: 400px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-caption {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-category {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--orange);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        /* ===== PLACEHOLDER STYLES ===== */
+        .placeholder-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--gray-100);
+            border: 2px dashed var(--gray-300);
+            color: var(--gray-500);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .placeholder-text {
+            font-size: 1rem;
+            color: var(--gray-500);
+        }
+
+        /* ===== OUR TEAM SECTION ===== */
+        .team-section {
+            background-color: var(--gray-100);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .team-section > p {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: var(--gray-100);
+        }
+
+        .team-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .team-role {
+            font-size: 0.875rem;
+            color: var(--burgundy);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== INSTAGRAM CTA ===== */
+        .instagram-cta {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+        }
+
+        .instagram-cta h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .instagram-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .instagram-btn {
+            background-color: var(--white);
+            color: #E1306C;
+            font-weight: 600;
+        }
+
+        .instagram-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== ORDER CTA ===== */
+        .order-cta {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #5a1530 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+        }
+
+        .order-cta h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .order-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-img {
+            height: 45px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        .footer-heading {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-contact i {
+            color: var(--orange);
+            font-size: 0.875rem;
+            margin-top: 0.125rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible,
+        .fade-in-left.visible,
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.75rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .gallery-item.large {
+                grid-column: span 1;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                font-size: 1.25rem;
+                text-align: center;
+            }
+            
+            .gallery-hero {
+                padding: 10rem 0 4rem;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-filter {
+                top: 70px;
+                padding: 1rem 0;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .team-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logorl.jpg" alt="R&L Bitez Logo" class="logo-img">
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="contacts.html">Contact</a>
+                <a href="https://wa.me/27824218780" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Order Now
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Our Gallery</h1>
+            <p class="fade-in-up">A visual feast of our delicious food and amazing team. See the passion behind every plate we serve.</p>
+            <a href="#team" class="btn btn-primary fade-in-up">
+                <i class="fas fa-users"></i> Meet Our Team
+            </a>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">
+            <i class="fas fa-th"></i> All Photos
+        </button>
+        <button class="filter-btn" data-filter="food">
+            <i class="fas fa-utensils"></i> Our Food
+        </button>
+        <button class="filter-btn" data-filter="team">
+            <i class="fas fa-users"></i> Our Team
+        </button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="container">
+        <section class="section">
+            <div class="gallery-grid">
+                <!-- Food Items -->
+                <div class="gallery-item fade-in-left large" data-category="all food">
+                    <div class="gallery-badge">Popular</div>
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-hamburger"></i>
+                        </div>
+                        <p class="placeholder-text">Our Signature Burgers</p>
+                        <p class="text-xs">Delicious photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" data-category="all food">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <p class="placeholder-text">Chicken Wings</p>
+                        <p class="text-xs">Tasty photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" data-category="all food">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-french-fries"></i>
+                        </div>
+                        <p class="placeholder-text">Loaded Fries</p>
+                        <p class="text-xs">Crispy photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-right" data-category="all food">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-ice-cream"></i>
+                        </div>
+                        <p class="placeholder-text">Treats</p>
+                        <p class="text-xs">Sweet photos coming soon</p>
+                    </div>
+                </div>
+
+                <!-- Team Items -->
+                <div class="gallery-item fade-in-left" data-category="all team">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-user-chef"></i>
+                        </div>
+                        <p class="placeholder-text">Our Chefs</p>
+                        <p class="text-xs">Team photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" data-category="all team">
+                    <div class="gallery-badge">Team</div>
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <p class="placeholder-text">R&L Bitez Family</p>
+                        <p class="text-xs">Group photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" data-category="all food">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-pizza-slice"></i>
+                        </div>
+                        <p class="placeholder-text">more food</p>
+                        <p class="text-xs">Fresh photos coming soon</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-right" data-category="all team">
+                    <div class="placeholder-item">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-concierge-bell"></i>
+                        </div>
+                        <p class="placeholder-text">Service Team</p>
+                        <p class="text-xs">Action photos coming soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <section id="team" class="team-section fade-in-up">
+                <h2>Meet Our Team</h2>
+                <p>The passionate people behind R&L Bitez who work hard to bring you the best street food in Marapyane.</p>
+                
+                <div class="team-grid">
+                    <div class="team-card fade-in-left">
+                        <div class="team-img placeholder-item">
+                            <div class="placeholder-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Our Founders</h3>
+                            <p class="team-role">R & L</p>
+                            <p class="team-description">The visionaries behind R&L Bitez, bringing quality street food to Marapyane.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card fade-in-up">
+                        <div class="team-img placeholder-item">
+                            <div class="placeholder-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Kitchen Team</h3>
+                            <p class="team-role">Master Chefs</p>
+                            <p class="team-description">Our talented chefs who prepare every meal with care and passion.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card fade-in-right">
+                        <div class="team-img placeholder-item">
+                            <div class="placeholder-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">service team</h3>
+                            <p class="team-role">Customer Service</p>
+                            <p class="team-description">Friendly faces ensuring you have the best dining experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram CTA -->
+            <section class="instagram-cta fade-in-up">
+                <h2>Follow Our Journey</h2>
+                <p>See daily updates, behind-the-scenes, and new menu items on our Instagram. Tag us in your R&L Bitez photos!</p>
+                <a href="https://instagram.com" class="btn instagram-btn" target="_blank">
+                    <i class="fab fa-instagram"></i> @RLBitez
+                </a>
+            </section>
+
+            <!-- Order CTA -->
+            <section class="order-cta fade-in-up">
+                <h2>Hungry Yet?</h2>
+                <p>Seeing is believing, but tasting is experiencing. Place your order now and taste why Marapyane loves R&L Bitez.</p>
+                <a href="https://wa.me/27824218780?text=Hi%20R%26L%20Bitez%2C%20I'd%20like%20to%20place%20an%20order%20after%20seeing%20your%20gallery" 
+                   class="btn whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                </a>
+            </section>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="images/logorl.jpg" alt="R&L Bitez Logo" class="footer-logo-img">
+                    <p>Crafted for Kasi. Serving Marapyane with premium street food since 2020. Quality, flavor, and community at the heart of everything we do.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/27824218780" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Gallery Categories</h4>
+                    <ul>
+                        <li><a href="#" data-filter="food">Our Food</a></li>
+                        <li><a href="#" data-filter="team">Our Team</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Marapyane, Mpumalanga</li>
+                        <li><i class="fas fa-phone"></i> 082 421 8780</li>
+                        <li><i class="fas fa-envelope"></i> order@rlbitez.co.za</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 10am-8pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        let menuOpen = false;
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            navLinks.classList.toggle('active');
+            
+            // Toggle between bars and cross icon
+            if (menuOpen) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+                menuOpen = false;
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    const categories = item.getAttribute('data-category').split(' ');
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Footer gallery filter links
+        document.querySelectorAll('.footer-links a[data-filter]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filterValue = link.getAttribute('data-filter');
+                
+                // Find and click the corresponding filter button
+                filterBtns.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === filterValue) {
+                        btn.click();
+                        window.scrollTo({
+                            top: document.querySelector('.gallery-filter').offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Initial check
+        fadeInOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (menuOpen) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        document.body.style.overflow = 'auto';
+                        menuOpen = false;
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Logo click handler
+        document.querySelector('.logo-img').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
