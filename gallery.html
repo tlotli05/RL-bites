@@ -272,48 +272,11 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* ===== GALLERY FILTER ===== */
-        .gallery-filter {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 80px;
-            background-color: var(--white);
-            padding: 1.5rem 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: 1px solid var(--gray-200);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray-600);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background-color: var(--burgundy);
-            color: var(--white);
-            border-color: var(--burgundy);
-        }
-
-        /* ===== GALLERY GRID ===== */
+        /* ===== GALLERY GRID - PROFESSIONAL VERSION ===== */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-bottom: 4rem;
         }
 
@@ -322,19 +285,32 @@
             border-radius: 12px;
             overflow: hidden;
             background-color: var(--gray-100);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
-            height: 300px;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .gallery-item:nth-child(1) { transition-delay: 0.05s; }
+        .gallery-item:nth-child(2) { transition-delay: 0.1s; }
+        .gallery-item:nth-child(3) { transition-delay: 0.15s; }
+        .gallery-item:nth-child(4) { transition-delay: 0.2s; }
+        .gallery-item:nth-child(5) { transition-delay: 0.25s; }
+        .gallery-item:nth-child(6) { transition-delay: 0.3s; }
+        .gallery-item:nth-child(7) { transition-delay: 0.35s; }
+        .gallery-item:nth-child(8) { transition-delay: 0.4s; }
+        .gallery-item:nth-child(9) { transition-delay: 0.45s; }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .gallery-item:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .gallery-item.large {
-            grid-column: span 2;
-            height: 400px;
         }
 
         .gallery-img {
@@ -346,35 +322,6 @@
 
         .gallery-item:hover .gallery-img {
             transform: scale(1.05);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem 1.5rem 1.5rem;
-            color: var(--white);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-caption {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .gallery-category {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .gallery-badge {
@@ -390,31 +337,7 @@
             z-index: 2;
         }
 
-        /* ===== PLACEHOLDER STYLES ===== */
-        .placeholder-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--gray-100);
-            border: 2px dashed var(--gray-300);
-            color: var(--gray-500);
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .placeholder-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .placeholder-text {
-            font-size: 1rem;
-            color: var(--gray-500);
-        }
-
-        /* ===== OUR TEAM SECTION ===== */
+        /* ===== OUR CHEFS SECTION ===== */
         .team-section {
             background-color: var(--gray-100);
             border-radius: 16px;
@@ -435,8 +358,10 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .team-card {
@@ -454,8 +379,9 @@
 
         .team-img {
             width: 100%;
-            height: 250px;
+            height: 320px;
             object-fit: cover;
+            object-position: 50% 20%;
             background-color: var(--gray-100);
         }
 
@@ -465,23 +391,23 @@
         }
 
         .team-name {
-            font-size: 1.125rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--black);
+            color: var(--burgundy);
         }
 
         .team-role {
             font-size: 0.875rem;
-            color: var(--burgundy);
-            font-weight: 500;
+            color: var(--orange);
+            font-weight: 600;
             margin-bottom: 0.75rem;
         }
 
         .team-description {
             font-size: 0.875rem;
             color: var(--gray-600);
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
 
         /* ===== INSTAGRAM CTA ===== */
@@ -726,9 +652,9 @@
                 padding: 4rem 0;
             }
             
-            .gallery-item.large {
-                grid-column: span 1;
-                height: 300px;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
             }
         }
 
@@ -770,18 +696,14 @@
                 font-size: 2.5rem;
             }
             
-            .gallery-filter {
-                top: 70px;
-                padding: 1rem 0;
-            }
-            
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
             }
             
             .team-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
             }
             
             .container {
@@ -804,19 +726,6 @@
             
             .gallery-hero h1 {
                 font-size: 2rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8125rem;
-            }
-            
-            .gallery-item {
-                height: 250px;
             }
             
             .nav-container {
@@ -857,157 +766,88 @@
     <section class="gallery-hero">
         <div class="container">
             <h1 class="fade-in-up">Our Gallery</h1>
-            <p class="fade-in-up">A visual feast of our delicious food and amazing team. See the passion behind every plate we serve.</p>
-            <a href="#team" class="btn btn-primary fade-in-up">
-                <i class="fas fa-users"></i> Meet Our Team
+            <p class="fade-in-up">A visual feast of our delicious food. See the passion and pride behind every plate we serve at R&L Bitez.</p>
+            <a href="#chefs" class="btn btn-primary fade-in-up">
+                <i class="fas fa-users"></i> Meet Our Chefs
             </a>
         </div>
     </section>
-
-    <!-- Gallery Filter -->
-    <div class="gallery-filter">
-        <button class="filter-btn active" data-filter="all">
-            <i class="fas fa-th"></i> All Photos
-        </button>
-        <button class="filter-btn" data-filter="food">
-            <i class="fas fa-utensils"></i> Our Food
-        </button>
-        <button class="filter-btn" data-filter="team">
-            <i class="fas fa-users"></i> Our Team
-        </button>
-    </div>
 
     <!-- Gallery Grid -->
     <div class="container">
         <section class="section">
             <div class="gallery-grid">
-                <!-- Food Items -->
-                <div class="gallery-item fade-in-left large" data-category="all food">
+                <!-- gallery1.jpeg -->
+                <div class="gallery-item">
                     <div class="gallery-badge">Popular</div>
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-hamburger"></i>
-                        </div>
-                        <p class="placeholder-text">Our Signature Burgers</p>
-                        <p class="text-xs">Delicious photos coming soon</p>
-                    </div>
+                    <img src="images/gallery1.jpeg" alt="R&L Bitez Signature Dish" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-up" data-category="all food">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-drumstick-bite"></i>
-                        </div>
-                        <p class="placeholder-text">Chicken Wings</p>
-                        <p class="text-xs">Tasty photos coming soon</p>
-                    </div>
+                <!-- gallery2.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery2.jpeg" alt="R&L Bitez Special" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-up" data-category="all food">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-french-fries"></i>
-                        </div>
-                        <p class="placeholder-text">Loaded Fries</p>
-                        <p class="text-xs">Crispy photos coming soon</p>
-                    </div>
+                <!-- gallery3.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery3.jpeg" alt="R&L Bitez Creation" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-right" data-category="all food">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-ice-cream"></i>
-                        </div>
-                        <p class="placeholder-text">Treats</p>
-                        <p class="text-xs">Sweet photos coming soon</p>
-                    </div>
+                <!-- gallery4.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery4.jpeg" alt="R&L Bitez Delight" class="gallery-img">
                 </div>
 
-                <!-- Team Items -->
-                <div class="gallery-item fade-in-left" data-category="all team">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-user-chef"></i>
-                        </div>
-                        <p class="placeholder-text">Our Chefs</p>
-                        <p class="text-xs">Team photos coming soon</p>
-                    </div>
+                <!-- gallery5.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery5.jpeg" alt="R&L Bitez Favorite" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-up" data-category="all team">
-                    <div class="gallery-badge">Team</div>
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <p class="placeholder-text">R&L Bitez Family</p>
-                        <p class="text-xs">Group photos coming soon</p>
-                    </div>
+                <!-- gallery6.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery6.jpeg" alt="R&L Bitez Special" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-up" data-category="all food">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-pizza-slice"></i>
-                        </div>
-                        <p class="placeholder-text">more food</p>
-                        <p class="text-xs">Fresh photos coming soon</p>
-                    </div>
+                <!-- gallery7.jpeg -->
+                <div class="gallery-item">
+                    <div class="gallery-badge">Best Seller</div>
+                    <img src="images/gallery7.jpeg" alt="R&L Bitez House Special" class="gallery-img">
                 </div>
 
-                <div class="gallery-item fade-in-right" data-category="all team">
-                    <div class="placeholder-item">
-                        <div class="placeholder-icon">
-                            <i class="fas fa-concierge-bell"></i>
-                        </div>
-                        <p class="placeholder-text">Service Team</p>
-                        <p class="text-xs">Action photos coming soon</p>
-                    </div>
+                <!-- gallery8.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery8.jpeg" alt="R&L Bitez Treat" class="gallery-img">
+                </div>
+
+                <!-- gallery9.jpeg -->
+                <div class="gallery-item">
+                    <img src="images/gallery9.jpeg" alt="R&L Bitez Masterpiece" class="gallery-img">
                 </div>
             </div>
 
-            <!-- Team Section -->
-            <section id="team" class="team-section fade-in-up">
-                <h2>Meet Our Team</h2>
-                <p>The passionate people behind R&L Bitez who work hard to bring you the best street food in Marapyane.</p>
+            <!-- Chefs Section -->
+            <section id="chefs" class="team-section fade-in-up">
+                <h2>Meet Our Chefs</h2>
+                <p>The passionate culinary experts behind R&L Bitez who work hard to bring you the best street food in Marapyane.</p>
                 
                 <div class="team-grid">
+                    <!-- owner1.jpeg - Regomoditswe -->
                     <div class="team-card fade-in-left">
-                        <div class="team-img placeholder-item">
-                            <div class="placeholder-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                        </div>
+                        <img src="images/owner1.jpeg" alt="Regomoditswe" class="team-img">
                         <div class="team-content">
-                            <h3 class="team-name">Our Founders</h3>
-                            <p class="team-role">R & L</p>
-                            <p class="team-description">The visionaries behind R&L Bitez, bringing quality street food to Marapyane.</p>
+                            <h3 class="team-name">Regomoditswe</h3>
+                            <div class="team-role">Founder & Head Chef</div>
+                            <p class="team-description">The visionary behind R&L Bitez, bringing quality street food to Marapyane with pride and passion.</p>
                         </div>
                     </div>
                     
-                    <div class="team-card fade-in-up">
-                        <div class="team-img placeholder-item">
-                            <div class="placeholder-icon">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Kitchen Team</h3>
-                            <p class="team-role">Master Chefs</p>
-                            <p class="team-description">Our talented chefs who prepare every meal with care and passion.</p>
-                        </div>
-                    </div>
-                    
+                    <!-- owner3.jpg - Lesedi -->
                     <div class="team-card fade-in-right">
-                        <div class="team-img placeholder-item">
-                            <div class="placeholder-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                        </div>
+                        <img src="images/owner3.jpg" alt="Lesedi" class="team-img">
                         <div class="team-content">
-                            <h3 class="team-name">service team</h3>
-                            <p class="team-role">Customer Service</p>
-                            <p class="team-description">Friendly faces ensuring you have the best dining experience.</p>
+                            <h3 class="team-name">Lesedi</h3>
+                            <div class="team-role">Founder & Head Chef</div>
+                            <p class="team-description">Passionate about service excellence and creating memorable dining experiences for every customer.</p>
                         </div>
                     </div>
                 </div>
@@ -1040,7 +880,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <img src="images/logorl.jpg" alt="R&L Bitez Logo" class="footer-logo-img">
-                    <p>Crafted for Kasi. Serving Marapyane with premium street food since 2025. Quality, flavor, and community at the heart of everything we do.</p>
+                    <p>Crafted for Kasi. Serving Marapyane with premium street food since 2020. Quality, flavor, and community at the heart of everything we do.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1059,14 +899,6 @@
                     </ul>
                 </div>
                 
-                <div class="footer-links">
-                    <h4 class="footer-heading">Gallery Categories</h4>
-                    <ul>
-                        <li><a href="#" data-filter="food">Our Food</a></li>
-                        <li><a href="#" data-filter="team">Our Team</a></li>
-                    </ul>
-                </div>
-                
                 <div class="footer-contact">
                     <h4 class="footer-heading">Contact Info</h4>
                     <ul>
@@ -1079,7 +911,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2026 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga</p>
+                <p>&copy; 2023 R&L Bitez. All rights reserved. | Crafted for Kasi | Marapyane, Mpumalanga</p>
             </div>
         </div>
     </footer>
@@ -1094,7 +926,6 @@
             menuOpen = !menuOpen;
             navLinks.classList.toggle('active');
             
-            // Toggle between bars and cross icon
             if (menuOpen) {
                 mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
                 document.body.style.overflow = 'hidden';
@@ -1104,7 +935,6 @@
             }
         });
         
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -1124,60 +954,19 @@
             }
         });
         
-        // Gallery Filtering
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filterValue = btn.getAttribute('data-filter');
-                
-                // Filter gallery items
-                galleryItems.forEach(item => {
-                    const categories = item.getAttribute('data-category').split(' ');
-                    
-                    if (filterValue === 'all' || categories.includes(filterValue)) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
+        // Scroll animations for gallery items (staggered fade-in)
+        const animateGalleryItems = () => {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const itemVisible = 200;
+                if (itemTop < window.innerHeight - itemVisible) {
+                    item.classList.add('visible');
+                }
             });
-        });
+        };
         
-        // Footer gallery filter links
-        document.querySelectorAll('.footer-links a[data-filter]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const filterValue = link.getAttribute('data-filter');
-                
-                // Find and click the corresponding filter button
-                filterBtns.forEach(btn => {
-                    if (btn.getAttribute('data-filter') === filterValue) {
-                        btn.click();
-                        window.scrollTo({
-                            top: document.querySelector('.gallery-filter').offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-        
-        // Scroll animations
+        // Scroll animations for fade elements
         const fadeElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
         
         const fadeInOnScroll = () => {
@@ -1189,6 +978,7 @@
                     element.classList.add('visible');
                 }
             });
+            animateGalleryItems();
         };
         
         // Initial check
@@ -1207,7 +997,6 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Close mobile menu if open
                     if (menuOpen) {
                         navLinks.classList.remove('active');
                         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -1230,5 +1019,4 @@
         });
     </script>
 </body>
-
 </html>
