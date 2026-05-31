@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>R&L Bitez | Crafted for Kasi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -238,11 +238,15 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--charcoal);
             cursor: pointer;
             padding: 0.5rem;
             z-index: 1002;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ===== HERO SECTION ===== */
@@ -758,7 +762,7 @@
 
         @media (max-width: 768px) {
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             .nav-links {
@@ -884,7 +888,7 @@
                 <div class="logo-fallback">R&L<span>Bitez</span></div>
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
             
@@ -904,7 +908,7 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <button class="close-mobile-menu" id="closeMobileMenu">
+            <button class="close-mobile-menu" id="closeMobileMenu" aria-label="Close">
                 <i class="fas fa-times"></i>
             </button>
             <a href="index.html" class="active">Home</a>
@@ -983,9 +987,9 @@
                     </div>
                 </div>
                 
-                <!-- Combos Card -->
+                <!-- Combos Card: using gallery3.jpeg as requested -->
                 <div class="category-card" onclick="window.location.href='menu.html#combos'">
-                    <img src="images/combos.jpg" alt="Combos" class="category-img">
+                    <img src="images/gallery3.jpeg" alt="Combos" class="category-img">
                     <div class="category-content">
                         <h3>Combos</h3>
                         <p>Perfect meal deals combining burgers, fries, wings for the ultimate satisfaction and value.</p>
@@ -1091,10 +1095,9 @@
                     <div class="footer-logo">R&L<span>Bitez</span></div>
                     <p>Crafted for Kasi. Serving Marapyane with premium street food since 2025. Quality, flavor, and community at the heart of everything we do.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/27824218780" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1KtBgzBJbj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/rl_bitez?igsh=MW56cmQxbHAzemt6cg==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/27824218780" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
@@ -1136,173 +1139,195 @@
     </footer>
 
     <script>
-        // Mobile Menu Functionality - Fixed
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const closeMobileMenu = document.getElementById('closeMobileMenu');
-        
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        (function() {
+            // DOM elements
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
             
-            // Change icon to X
-            mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
-        }
-        
-        function closeMobileMenuFunc() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            // Get the icon element inside the button
+            let menuIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('i') : null;
             
-            // Change icon back to bars
-            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            if (mobileMenu.classList.contains('active')) {
-                closeMobileMenuFunc();
-            } else {
-                openMobileMenu();
-            }
-        });
-        
-        closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMobileMenuFunc);
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-        
-        // Smooth scroll animations with Intersection Observer
-        const fadeElements = document.querySelectorAll('.fade-in, .category-card, .stat-item, .info-card, .view-all-btn');
-        
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            // Function to update icon - ensures only ONE icon exists
+            function updateMenuIcon(isOpen) {
+                if (!mobileMenuBtn) return;
+                // Clear existing content but keep the button clean
+                mobileMenuBtn.innerHTML = '';
+                const newIcon = document.createElement('i');
+                if (isOpen) {
+                    newIcon.className = 'fas fa-times';
+                } else {
+                    newIcon.className = 'fas fa-bars';
                 }
-            });
-        }, observerOptions);
-        
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // WhatsApp order function with correct number
-        function orderOnWhatsApp() {
-            const phoneNumber = "27824218780";
-            const message = "Hi R&L Bitez, I'd like to place an order";
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-        
-        // Add event listener to WhatsApp buttons
-        document.querySelectorAll('.btn-primary').forEach(button => {
-            if (button.innerHTML.includes('whatsapp') || button.innerHTML.includes('Order Now')) {
-                button.addEventListener('click', function(e) {
-                    if (!this.getAttribute('href')) {
-                        e.preventDefault();
-                        orderOnWhatsApp();
-                    }
+                mobileMenuBtn.appendChild(newIcon);
+                // Update reference
+                menuIcon = newIcon;
+            }
+            
+            // Open mobile menu
+            function openMobileMenu() {
+                if (!mobileMenu || !mobileMenuOverlay) return;
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateMenuIcon(true);
+            }
+            
+            // Close mobile menu
+            function closeMobileMenuFunc() {
+                if (!mobileMenu || !mobileMenuOverlay) return;
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                updateMenuIcon(false);
+            }
+            
+            // Toggle function
+            function toggleMobileMenu() {
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    closeMobileMenuFunc();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            
+            // Add event listeners
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            
+            if (closeMobileMenu) {
+                closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+            }
+            
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
+            }
+            
+            // Close mobile menu when clicking any link inside
+            if (mobileMenu) {
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenuFunc);
                 });
             }
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (header) {
+                    if (window.scrollY > 50) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
                 }
             });
-        });
-        
-        // Logo loading with fallback
-        const logo = document.getElementById('logo');
-        const logoFallback = document.querySelector('.logo-fallback');
-        
-        logo.onload = function() {
-            logo.style.display = 'block';
-            logoFallback.style.display = 'none';
-        };
-        
-        logo.onerror = function() {
-            logo.style.display = 'none';
-            logoFallback.style.display = 'block';
-        };
-        
-        // Check if logo loads properly
-        if (logo.complete) {
-            logo.onload();
-        }
-        
-        // Category card click handlers
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Add click animation
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-        
-        // Image fallbacks for menu cards
-        const menuImages = document.querySelectorAll('.category-img');
-        const imageFallbacks = {
-            'burgers.jpg': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'fries.jpg': 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'wings.jpg': 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'combos.jpg': 'https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-        };
-        
-        menuImages.forEach(img => {
-            img.onerror = function() {
-                const src = this.src.split('/').pop();
-                if (imageFallbacks[src]) {
-                    this.src = imageFallbacks[src];
-                }
+            
+            // Smooth scroll animations with Intersection Observer
+            const fadeElements = document.querySelectorAll('.fade-in, .category-card, .stat-item, .info-card, .view-all-btn');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
             };
-        });
-        
-        // Trigger initial animations on page load
-        window.addEventListener('load', function() {
-            // Trigger Intersection Observer immediately
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
             fadeElements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    element.classList.add('visible');
-                }
+                observer.observe(element);
             });
-        });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu if open
+                        if (mobileMenu && mobileMenu.classList.contains('active')) {
+                            closeMobileMenuFunc();
+                        }
+                    }
+                });
+            });
+            
+            // Logo loading with fallback
+            const logo = document.getElementById('logo');
+            const logoFallback = document.querySelector('.logo-fallback');
+            
+            if (logo) {
+                logo.onload = function() {
+                    logo.style.display = 'block';
+                    if (logoFallback) logoFallback.style.display = 'none';
+                };
+                
+                logo.onerror = function() {
+                    logo.style.display = 'none';
+                    if (logoFallback) logoFallback.style.display = 'block';
+                };
+                
+                if (logo.complete) {
+                    logo.onload();
+                }
+            }
+            
+            // Category card click handlers
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Image fallbacks for menu cards
+            const menuImages = document.querySelectorAll('.category-img');
+            const imageFallbacks = {
+                'burgers.jpg': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'fries.jpg': 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'wings.jpg': 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'gallery3.jpeg': 'https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            };
+            
+            menuImages.forEach(img => {
+                img.onerror = function() {
+                    const src = this.src.split('/').pop();
+                    if (imageFallbacks[src]) {
+                        this.src = imageFallbacks[src];
+                    }
+                };
+            });
+            
+            // Trigger initial animations on page load
+            window.addEventListener('load', function() {
+                fadeElements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        element.classList.add('visible');
+                    }
+                });
+                // Ensure menu icon is correct on load (should be bars)
+                updateMenuIcon(false);
+            });
+        })();
     </script>
 </body>
 </html>
